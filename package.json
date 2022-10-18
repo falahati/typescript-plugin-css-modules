@@ -5,10 +5,10 @@
   "author": "Brody McKee <mrmckeb@hotmail.com>",
   "license": "MIT",
   "description": "CSS modules support for TypeScript",
-  "homepage": "https://github.com/mrmckeb/typescript-plugin-css-modules",
+  "homepage": "https://github.com/falahati/typescript-plugin-css-modules",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mrmckeb/typescript-plugin-css-modules"
+    "url": "https://github.com/falahati/typescript-plugin-css-modules"
   },
   "keywords": [
     "css",
@@ -25,9 +25,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "rm -rf ./lib && tsc",
     "lint": "eslint --max-warnings 0 . && yarn prettier -c .",
-    "prepublishOnly": "yarn build",
     "test": "jest ./src"
   },
   "husky": {
