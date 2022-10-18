@@ -35,6 +35,7 @@ export const getClasses = ({
   options,
   processor,
   compilerOptions,
+  directory
 }: {
   css: string;
   fileName: string;
@@ -42,6 +43,7 @@ export const getClasses = ({
   options: Options;
   processor: Processor;
   compilerOptions: tsModule.CompilerOptions;
+  directory: string
 }): CSSExports => {
   try {
     const fileType = getFileType(fileName);
@@ -64,6 +66,7 @@ export const getClasses = ({
           syncImport: true,
           filename: fileName,
           ...(rendererOptions.less || {}),
+          paths: [...(rendererOptions.less?.paths || [directory])]
         } as Less.Options,
         (error, output) => {
           if (error || output === undefined) throw error;
@@ -73,7 +76,7 @@ export const getClasses = ({
     } else if (fileType === FileType.scss || fileType === FileType.sass) {
       const filePath = getFilePath(fileName);
       const { includePaths, ...sassOptions } = rendererOptions.sass || {};
-      const { baseUrl, paths } = compilerOptions;
+      const { baseUrl = directory, paths } = compilerOptions;
       const matchPath =
         baseUrl && paths ? createMatchPath(path.resolve(baseUrl), paths) : null;
 
